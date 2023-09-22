@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --header-start-rgb: 140, 0, 180;
+  --header-end-rgb: 115, 255, 85;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,6 +16,24 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+header {
+  width: 100%;
+  height: fit-content;
+  background: linear-gradient(
+    to right,
+    rgb(var(--header-start-rgb)),
+    rgb(var(--header-end-rgb))
+  );
+  padding: 1em;
+}
+
+header > h1 {
+  font-weight: bold;
+  justify-self: center;
+  justify-content: center;
+  text-align: center;
 }
 
 body {
