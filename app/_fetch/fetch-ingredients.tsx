@@ -1,4 +1,7 @@
+import { readFile, writeFile } from "fs/promises";
 import { Ingredient } from "../_model/ingredient";
+
+const fileName = "ingredients.json";
 
 const hardCoded: Ingredient[] = [
   {
@@ -38,5 +41,58 @@ const hardCoded: Ingredient[] = [
 ];
 
 export default async function fetchIngredients(): Promise<Ingredient[]> {
-  return [];
+  return readFile("ingredients.json", { encoding: "utf8" }).then(
+    (buffer) => {
+      return JSON.parse(buffer) as Ingredient[];
+    },
+    (err) => {
+      console.error(err);
+      return [...hardCoded];
+    }
+  );
+}
+
+export async function fetchIngredient(slug: string): Promise<Ingredient> {
+  console.log(`Fetch ${slug}`);
+
+  return new Promise((res, rej) => {
+    fetchIngredients().then((ings) => {
+      const ingredient = ings.find((ing) => ing.slug === slug);
+      if (ingredient) {
+        res({ ...ingredient });
+      } else {
+        rej(`No ingredient with slug ${slug} found`);
+      }
+    });
+  });
+}
+
+export async function createIngredient(ingredient: Ingredient): Promise<void> {
+  return new Promise((res, rej) => {
+    console.log("Create ", ingredient);
+    fetchIngredients().then((ings) => {
+      const index = ings.findIndex((ing) => ing.slug === ingredient.slug);
+      if (index < 0) {
+        ings.push(ingredient);
+        writeFile(fileName, JSON.stringify(ings)).then(res, rej);
+      } else {
+        rej("Slug already exists.");
+      }
+    });
+  });
+}
+
+export async function updateIngredient(ingredient: Ingredient): Promise<void> {
+  return new Promise((res, rej) => {
+    console.log("Update ", ingredient);
+    fetchIngredients().then((ings) => {
+      const index = ings.findIndex((ing) => ing.slug === ingredient.slug);
+      if (index >= 0) {
+        ings[index] = ingredient;
+        writeFile(fileName, JSON.stringify(ings)).then(res, rej);
+      } else {
+        rej("Ingredient not found.");
+      }
+    });
+  });
 }
