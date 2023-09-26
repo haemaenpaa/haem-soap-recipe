@@ -1,6 +1,7 @@
 import Link from "next/link";
 import fetchIngredients from "../_fetch/fetch-ingredients";
 import { Ingredient, Category } from "../_model/ingredient";
+import "./ingredients.css";
 
 function IngredientLi(params: { ingredient: Ingredient }) {
   const ing = params.ingredient;
@@ -30,11 +31,7 @@ function IngredientsUl(params: {
 export default async function IngredientsPage() {
   const ingredients = await fetchIngredients();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>
-        This is where the user can view and edit ingredients available for
-        soaps.
-      </h1>
+    <main className="flex min-h-screen flex-col p-24">
       <h1>Oils</h1>
       <IngredientsUl category={"oil"} ingredients={ingredients}></IngredientsUl>
       <h1>Fragrances</h1>

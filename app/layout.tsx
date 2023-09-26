@@ -1,12 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Link from "next/link";
+import NavLink from "./NavLink";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Haemo's soap recipe thing",
+  title: "Soap recipe thing",
   description:
     "Interactive soap recipe calculator made as an exercise in Next.js",
 };
@@ -20,9 +20,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header>
-          <h1>Haemo's soap calculator thing.</h1>
-          <Link href="/calculator">Recipe calculator</Link>
-          <Link href="/ingredients">Manage ingredients</Link>
+          <h1>Soap calculator thingie.</h1>
+          <div className="navbar">
+            <NavLink href="/calculator" activeClassName="active">
+              Recipe calculator
+            </NavLink>
+            <NavLink href="/ingredients" activeClassName="active">
+              Manage ingredients
+            </NavLink>
+          </div>
         </header>
         {children}
       </body>

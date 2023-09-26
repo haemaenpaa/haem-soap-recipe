@@ -45,3 +45,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.active {
+  font-weight: bold;
+}

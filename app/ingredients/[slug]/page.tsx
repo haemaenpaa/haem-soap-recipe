@@ -28,28 +28,24 @@ export default function IngredientEdit({
   if (!ingredient) {
     return <h1>Loading....</h1>;
   }
-  const isCreating = ingredient.slug.length === 0;
   return (
     <main className="flex min-h-screen flex-col">
       {error === null ? <></> : <p className="error">{error}</p>}
-      {isCreating ? (
-        <select
-          value={ingredient.category}
-          onChange={(ev) =>
-            setIngredient({
-              ...ingredient,
-              category: ev.target.value as Category,
-            })
-          }
-        >
-          <option>Select category</option>
-          <option value="oil">Oil</option>
-          <option value="fragrance">Fragrance</option>
-          <option value="additive">Additive</option>
-        </select>
-      ) : (
-        <></>
-      )}
+      <select
+        value={ingredient.category}
+        onChange={(ev) =>
+          setIngredient({
+            ...ingredient,
+            category: ev.target.value as Category,
+          })
+        }
+      >
+        <option>Select category</option>
+        <option value="oil">Oil</option>
+        <option value="fragrance">Fragrance</option>
+        <option value="additive">Additive</option>
+      </select>
+
       <label htmlFor={`${params.slug}-name`}>Name</label>
       <input
         id={`${params.slug}-name`}
@@ -68,26 +64,18 @@ export default function IngredientEdit({
           setIngredient({ ...ingredient, description: ev.target.value })
         }
       />
-      {ingredient.saponificationValue === undefined && !isCreating ? (
-        <></>
-      ) : (
-        <>
-          <label htmlFor={`${params.slug}-sap-input`}>
-            Saponification value
-          </label>
-          <input
-            id={`${params.slug}-sap-input`}
-            type="number"
-            value={ingredient.saponificationValue || 0}
-            onChange={(ev) =>
-              setIngredient({
-                ...ingredient,
-                saponificationValue: Number.parseFloat(ev.target.value),
-              })
-            }
-          />
-        </>
-      )}
+      <label htmlFor={`${params.slug}-sap-input`}>Saponification value</label>
+      <input
+        id={`${params.slug}-sap-input`}
+        type="number"
+        value={ingredient.saponificationValue || 0}
+        onChange={(ev) =>
+          setIngredient({
+            ...ingredient,
+            saponificationValue: Number.parseFloat(ev.target.value),
+          })
+        }
+      />
       <button
         onClick={() =>
           saveIngredient(ingredient).then(
