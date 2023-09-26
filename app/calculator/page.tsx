@@ -1,8 +1,13 @@
-export default function CalculatorPage() {
+import fetchIngredients from "../_fetch/fetch-ingredients";
+import { IngredientSelector } from "./IngredientSelector";
+import "./calculator.module.css";
+
+export default async function CalculatorPage() {
+  const ingredients = await fetchIngredients();
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1>This is where the actual recipe calculation would happen.</h1>
+      <main className="flex">
+        <IngredientSelector ingredients={ingredients}></IngredientSelector>
       </main>
     </>
   );

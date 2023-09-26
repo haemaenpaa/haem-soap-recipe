@@ -1,0 +1,41 @@
+.ingredient-selector-grid {
+  display: grid;
+  grid-template-columns: [list] 1fr [details] 2fr;
+  column-gap: 1em;
+}
+
+.ingredient-selector-list {
+  height: 100%;
+  grid-column: list;
+  grid-row: 1;
+}
+
+.ingredient-selector-list > li {
+  cursor: pointer;
+}
+
+.ingredient-details-view {
+  grid-column: details;
+  grid-row: 1;
+  border-style: none none none double;
+  border-width: 5px;
+}
+
+.ingredient-details-view > h1 {
+  color: #440;
+  font-weight: bold;
+}
+
+.ingredient-details-view > p {
+  color: #440;
+  font-style: italic;
+}
+
+.ingredient {
+  color: #880;
+}
+
+.selected {
+  background-color: #880;
+  color: #ddf;
+}
