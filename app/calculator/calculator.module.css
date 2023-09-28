@@ -17,6 +17,10 @@
   font-variant: small-caps;
 }
 
+.recipe-list {
+  grid-area: recipe;
+}
+
 .oil-title {
   grid-area: oils-title;
 }
@@ -97,4 +101,37 @@
 .selected {
   background-color: #880;
   color: #ddf;
+}
+
+.recipe-listing-grid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(9, max-content);
+  grid-template-areas:
+    "oils-title"
+    "oils"
+    "oils-summary"
+    "fragrances-title"
+    "fragrances"
+    "fragrances-summary"
+    "additives-title"
+    "additives"
+    "additives-summary";
+}
+
+.ingredient-summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.oil-summary {
+  grid-area: oils-summary;
+}
+
+.additive-summary {
+  grid-area: additives-summary;
+}
+.fragrance-summary {
+  grid-area: fragrancess-summary;
 }

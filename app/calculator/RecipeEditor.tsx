@@ -5,6 +5,7 @@ import { Ingredient } from "../_model/ingredient";
 import Recipe, { IngredientEntry } from "../_model/recipe";
 import { IngredientSelector } from "./IngredientSelector";
 import styles from "./calculator.module.css";
+import IngredientsListing from "./IngredientsListing";
 
 interface RecipeAction {
   action:
@@ -52,6 +53,18 @@ export default function RecipeEditor(props: {
             dispatch({ action: "add", ingredientSlug: ing.slug, amount })
           }
         ></IngredientSelector>
+      </div>
+      <div className={styles["recipe-list"]}>
+        <IngredientsListing
+          ingredientReference={ingredientReference}
+          recipeIngredients={recipe.ingredients}
+          changeAmount={(ingredientSlug, amount) =>
+            dispatch({ action: "setAmount", ingredientSlug, amount })
+          }
+          removeIngredient={(ingredientSlug) =>
+            dispatch({ action: "remove", ingredientSlug })
+          }
+        ></IngredientsListing>
       </div>
       <div className={styles["lye"]}>NaOH {lyeAmount}</div>
     </div>
