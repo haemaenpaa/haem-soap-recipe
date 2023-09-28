@@ -22,6 +22,9 @@ export default function RootLayout({
         <header>
           <h1>Soap calculator thingie.</h1>
           <div className="navbar">
+            <NavLink href="/recipes" activeClassName="active">
+              Recipe list
+            </NavLink>
             <NavLink href="/calculator" activeClassName="active">
               Recipe calculator
             </NavLink>

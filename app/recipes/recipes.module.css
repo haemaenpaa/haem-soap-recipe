@@ -1,0 +1,8 @@
+.recipe-list {
+  list-style: circle inside;
+}
+
+.recipe-list > li {
+  cursor: pointer;
+  color: #880;
+}

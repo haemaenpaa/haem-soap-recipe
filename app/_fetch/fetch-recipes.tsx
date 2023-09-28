@@ -14,11 +14,11 @@ export async function fetchRecipeList(): Promise<RecipeListEntry[]> {
     return [];
   }
 
-  return readdir("dirname").then((files) => {
+  return readdir(dirname).then((files) => {
     const promises = files
       .filter((f) => f.endsWith(".json"))
       .map((f) =>
-        readFile(f, { encoding: "utf8" }).then((buffer) => {
+        readFile(`${dirname}/${f}`, { encoding: "utf8" }).then((buffer) => {
           const recipe = JSON.parse(buffer);
           return { name: recipe.name, slug: recipe.slug } as RecipeListEntry;
         })
