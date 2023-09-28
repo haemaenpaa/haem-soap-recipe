@@ -1,12 +1,64 @@
+.recipe-editor {
+  display: grid;
+  grid-template-columns: 1rf 1rf;
+  grid-template-rows: repeat(7, max-content) 1rf;
+  grid-template-areas:
+    "details recipe "
+    "selector recipe"
+    ". lye";
+}
+
+.ingredient-selector {
+  grid-area: selector;
+}
+
+.selector-title {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.oil-title {
+  grid-area: oils-title;
+}
+.oil {
+  grid-area: oils;
+}
+.fragrance-title {
+  grid-area: fragrances-title;
+}
+.fragrance {
+  grid-area: fragrances;
+}
+
+.additive-title {
+  grid-area: additives-title;
+}
+.additive {
+  grid-area: additives;
+}
+
+.lye {
+  grid-area: lye;
+}
+
 .ingredient-selector-grid {
   display: grid;
-  grid-template-columns: [list] 1fr [details] 2fr;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(6, max-content) 1fr;
   column-gap: 1em;
+  grid-template-areas:
+    "oils-title details"
+    "oils details"
+    "fragrances-title details"
+    "fragrances details"
+    "additives-title details"
+    "additives details"
+    ". details";
 }
 
 .ingredient-selector-list {
   height: 100%;
-  grid-column: list;
+  grid-area: list;
   grid-row: 1;
 }
 
@@ -15,10 +67,17 @@
 }
 
 .ingredient-details-view {
-  grid-column: details;
-  grid-row: 1;
+  grid-area: details;
   border-style: none none none double;
   border-width: 5px;
+}
+.ingredient-details-view > button {
+  border-radius: 1em;
+  border-style: none;
+  color: #ddf;
+  background: #880;
+  padding-inline-start: 0.5em;
+  padding-inline-end: 0.5em;
 }
 
 .ingredient-details-view > h1 {
