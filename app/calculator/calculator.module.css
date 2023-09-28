@@ -12,6 +12,10 @@
   grid-area: selector;
 }
 
+.details-control {
+  grid-area: details;
+}
+
 .selector-title {
   font-weight: bold;
   font-variant: small-caps;
@@ -136,4 +140,9 @@
 }
 .fragrance-summary {
   grid-area: fragrancess-summary;
+}
+.recipe-details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
 }

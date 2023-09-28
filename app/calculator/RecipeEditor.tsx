@@ -5,6 +5,7 @@ import Recipe, { IngredientEntry } from "../_model/recipe";
 import { IngredientSelector } from "./IngredientSelector";
 import styles from "./calculator.module.css";
 import IngredientsListing from "./IngredientsListing";
+import RecipeDetails from "./RecipeDetails";
 
 interface RecipeAction {
   action:
@@ -13,7 +14,7 @@ interface RecipeAction {
     | "setAmount"
     | "setName"
     | "setDescription"
-    | "setSuperFat";
+    | "setSuperfat";
   ingredientSlug?: string;
   value?: string;
   amount?: number;
@@ -45,6 +46,16 @@ export default function RecipeEditor(props: {
   );
   return (
     <div className={styles["recipe-editor"]}>
+      <div className={styles["details-control"]}>
+        <RecipeDetails
+          recipe={recipe}
+          setName={(value) => dispatch({ action: "setName", value })}
+          setDescription={(value) =>
+            dispatch({ action: "setDescription", value })
+          }
+          setSuperfat={(amount) => dispatch({ action: "setSuperfat", amount })}
+        ></RecipeDetails>
+      </div>
       <div className="ingredient-selector">
         <IngredientSelector
           ingredients={ingredients}
@@ -111,7 +122,7 @@ function recipeReducer(recipe: Recipe, action: RecipeAction): Recipe {
       return { ...recipe, name: action.value! };
     case "setDescription":
       return { ...recipe, description: action.value! };
-    case "setSuperFat":
+    case "setSuperfat":
       return { ...recipe, superfat: action.amount || 0 };
     default:
       throw new Error(`Action ${action.action} not handled yet.`);
