@@ -40,6 +40,10 @@ const hardCoded: Ingredient[] = [
   },
 ];
 
+/**
+ * Fetches the list of known soap ingredients
+ * @returns List of all ingredients
+ */
 export default async function fetchIngredients(): Promise<Ingredient[]> {
   return readFile("ingredients.json", { encoding: "utf8" }).then(
     (buffer) => {
@@ -52,6 +56,11 @@ export default async function fetchIngredients(): Promise<Ingredient[]> {
   );
 }
 
+/**
+ * Fetches a specific ingredient
+ * @param slug ingredient slug, i.e. the identifier used for it
+ * @returns A corresponding ingredient.
+ */
 export async function fetchIngredient(slug: string): Promise<Ingredient> {
   console.log(`Fetch ${slug}`);
 
@@ -67,6 +76,11 @@ export async function fetchIngredient(slug: string): Promise<Ingredient> {
   });
 }
 
+/**
+ * Creates a new ingredient.
+ * @param ingredient ingredient to be created
+ * @returns
+ */
 export async function createIngredient(ingredient: Ingredient): Promise<void> {
   return new Promise((res, rej) => {
     console.log("Create ", ingredient);
@@ -82,6 +96,11 @@ export async function createIngredient(ingredient: Ingredient): Promise<void> {
   });
 }
 
+/**
+ * Updates an ingredient.
+ * @param ingredient ingredient to be updated
+ * @returns
+ */
 export async function updateIngredient(ingredient: Ingredient): Promise<void> {
   return new Promise((res, rej) => {
     console.log("Update ", ingredient);

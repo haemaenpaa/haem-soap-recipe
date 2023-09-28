@@ -21,6 +21,11 @@ interface RecipeAction {
   amount?: number;
 }
 
+/**
+ * Editor that combines the various other recipe related components.
+ * @param props recipe to be edited and a list of known ingredients.
+ * @returns
+ */
 export default function RecipeEditor(props: {
   recipe: Recipe;
   ingredients: Ingredient[];

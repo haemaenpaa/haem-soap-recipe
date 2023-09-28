@@ -3,6 +3,11 @@ import Recipe from "../../_model/recipe";
 import RecipeEditor from "../RecipeEditor";
 import { fetchRecipe } from "@/app/_fetch/fetch-recipes";
 
+/**
+ * Displays and edits a specific recipe
+ * @param param0 path parameters
+ * @returns
+ */
 export default async function CalculatorPage({
   params,
 }: {

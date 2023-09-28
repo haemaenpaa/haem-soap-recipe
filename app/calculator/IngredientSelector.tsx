@@ -2,6 +2,11 @@ import { useMemo, useState } from "react";
 import { Ingredient } from "../_model/ingredient";
 import styles from "./calculator.module.css";
 
+/**
+ * Component that lets the user add ingredients to a recipe.
+ * @param props list of known ingredients and a callback to add an ingredient.
+ * @returns
+ */
 export function IngredientSelector(props: {
   ingredients: Ingredient[];
   addIngredient: (i: Ingredient, amount: number) => void;

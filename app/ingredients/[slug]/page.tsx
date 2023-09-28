@@ -3,6 +3,11 @@ import { Category, Ingredient } from "@/app/_model/ingredient";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+/**
+ * Editor for an ingredient.
+ * @param param0
+ * @returns
+ */
 export default function IngredientEdit({
   params,
 }: {

@@ -3,6 +3,10 @@ import Recipe from "../_model/recipe";
 import RecipeEditor from "./RecipeEditor";
 import "./calculator.module.css";
 
+/**
+ * Displays a new recipe for creation.
+ * @returns
+ */
 export default async function CalculatorPage() {
   const ingredients = await fetchIngredients();
   const recipe: Recipe = {

@@ -1,6 +1,11 @@
 import Recipe from "../_model/recipe";
 import styles from "./calculator.module.css";
 
+/**
+ * Displays and changes details of a recipe.
+ * @param props The recipe and callbacks to set individual details.
+ * @returns
+ */
 export default function RecipeDetails(props: {
   recipe: Recipe;
   setName: (name: string) => void;

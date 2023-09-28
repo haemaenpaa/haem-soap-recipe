@@ -9,6 +9,11 @@ const categoryToHeader: any = {
   additive: "Additives",
 };
 
+/**
+ * List of the ingredients of a recipe.
+ * @param props Recipe ingredients, a mapping from slug to recipe, and callbacks to remove or change ingredients.
+ * @returns
+ */
 export default function IngredientsListing(props: {
   recipeIngredients: IngredientEntry[];
   ingredientReference: { [key: string]: Ingredient };
