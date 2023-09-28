@@ -1,4 +1,3 @@
-"use client";
 import { useMemo, useState } from "react";
 import { Ingredient } from "../_model/ingredient";
 import styles from "./calculator.module.css";

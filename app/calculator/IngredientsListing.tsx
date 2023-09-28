@@ -78,7 +78,12 @@ export default function IngredientsListing(props: {
         </ul>
       ))}
       {Object.keys(categoryTotals).map((k) => (
-        <div key={k} className={`ingredient-summary ${styles[k + "-summary"]}`}>
+        <div
+          key={k}
+          className={`${styles["ingredient-summary"]} ${
+            styles[k + "-summary"]
+          }`}
+        >
           {k !== "oil" && categoryTotals["oil"] ? (
             <p>
               {Math.round((100 * categoryTotals[k]) / categoryTotals["oil"])}%

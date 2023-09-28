@@ -1,5 +1,4 @@
 "use client";
-
 import { useMemo, useReducer } from "react";
 import { Ingredient } from "../_model/ingredient";
 import Recipe, { IngredientEntry } from "../_model/recipe";
