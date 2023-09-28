@@ -5,7 +5,7 @@
   grid-template-areas:
     "details recipe "
     "selector recipe"
-    ". lye";
+    "save lye";
 }
 
 .ingredient-selector {
@@ -121,6 +121,9 @@
     "additives-title"
     "additives"
     "additives-summary";
+
+  border-style: none none none double;
+  border-width: 5px;
 }
 
 .ingredient-summary {
@@ -145,4 +148,13 @@
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
+}
+
+.save {
+  grid-area: save;
+  border-radius: 1em;
+  border-style: double;
+  border-color: #880;
+  border-width: 0.25em;
+  color: #440;
 }

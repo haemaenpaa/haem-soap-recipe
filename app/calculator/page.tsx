@@ -1,6 +1,5 @@
 import fetchIngredients from "../_fetch/fetch-ingredients";
 import Recipe from "../_model/recipe";
-import { IngredientSelector } from "./IngredientSelector";
 import RecipeEditor from "./RecipeEditor";
 import "./calculator.module.css";
 

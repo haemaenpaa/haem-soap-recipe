@@ -21,10 +21,9 @@ export default function RecipeDetails(props: {
       <label htmlFor="description">Description:</label>
       <textarea
         id="description"
+        value={recipe.description}
         onChange={(ev) => setDescription(ev.target.value)}
-      >
-        {recipe.description}
-      </textarea>
+      ></textarea>
       <label htmlFor="superfat">Superfat %</label>
       <input
         id="superfat"

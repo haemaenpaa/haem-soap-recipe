@@ -6,6 +6,7 @@ import { IngredientSelector } from "./IngredientSelector";
 import styles from "./calculator.module.css";
 import IngredientsListing from "./IngredientsListing";
 import RecipeDetails from "./RecipeDetails";
+import { useRouter } from "next/navigation";
 
 interface RecipeAction {
   action:
@@ -23,14 +24,14 @@ interface RecipeAction {
 export default function RecipeEditor(props: {
   recipe: Recipe;
   ingredients: Ingredient[];
-  saveRecipe?: (r: Recipe) => void;
 }) {
-  const { recipe: initialRecipe, ingredients, saveRecipe } = props;
+  const { recipe: initialRecipe, ingredients } = props;
 
   const ingredientReference: { [key: string]: Ingredient } = useMemo(
     () => ingredients.reduce((prev, ing) => ({ ...prev, [ing.slug]: ing }), {}),
     [ingredients]
   );
+  const router = useRouter();
   const [recipe, dispatch] = useReducer(recipeReducer, initialRecipe);
   const lyeAmount = useMemo(
     () =>
@@ -77,6 +78,18 @@ export default function RecipeEditor(props: {
         ></IngredientsListing>
       </div>
       <div className={styles["lye"]}>NaOH {lyeAmount}</div>
+      <button
+        className={styles["save"]}
+        onClick={() =>
+          saveRecipe(recipe).then((slug) => {
+            if (!recipe.slug) {
+              router.push(`/calculator/${slug}`);
+            }
+          })
+        }
+      >
+        Save
+      </button>
     </div>
   );
 }
@@ -127,4 +140,17 @@ function recipeReducer(recipe: Recipe, action: RecipeAction): Recipe {
     default:
       throw new Error(`Action ${action.action} not handled yet.`);
   }
+}
+
+async function saveRecipe(recipe: Recipe): Promise<string> {
+  if (recipe.slug) {
+    return fetch(`/api/recipes/${recipe.slug}`, {
+      method: "PUT",
+      body: JSON.stringify(recipe),
+    }).then((response) => response.json());
+  }
+  return fetch("/api/recipes", {
+    method: "POST",
+    body: JSON.stringify(recipe),
+  }).then((response) => response.json());
 }
